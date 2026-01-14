@@ -5,6 +5,7 @@ import Product from '../models/Product.js';
 // @route   GET /api/products
 const getProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({});
+  console.log('Fetched Products:', products); // Debugging log
   res.json(products);
 });
 
