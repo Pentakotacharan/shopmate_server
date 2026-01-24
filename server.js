@@ -15,16 +15,6 @@ dotenv.config();
 connectDB();
 
 const app = express();
-
-// Middleware
-app.use(cors());
-app.use(express.json()); // Allows JSON data in body
-
-// Routes
-app.use('/api/products', productRoutes);
-app.use('/api/auth', authRoutes);
-app.use('/api/cart', cartRoutes);
-app.use('/api/payment', paymentRoutes);
 app.use(
   helmet({
     contentSecurityPolicy: {
@@ -39,6 +29,20 @@ app.use(
     },
   })
 );
+// Middleware
+app.use(cors({
+    origin: ["https://shopmate-frontend.vercel.app", "http://localhost:5173", "http://localhost:3000"], 
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
+app.use(express.json()); // Allows JSON data in body
+
+// Routes
+app.use('/api/products', productRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/cart', cartRoutes);
+app.use('/api/payment', paymentRoutes);
+
 
 
 // Root Route
@@ -50,7 +54,7 @@ app.get('/', (req, res) => {
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 app.listen(PORT, () => {
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
