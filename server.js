@@ -31,7 +31,7 @@ app.use(
 );
 // // Middleware
 app.use(cors({
-    origin: ["https://shopmate-frontend.vercel.app", "http://localhost:5173", "http://localhost:3000"], 
+    origin: ["https://shopmate-client.vercel.app", "http://localhost:5173", "http://localhost:3000"], 
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
