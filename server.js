@@ -29,7 +29,7 @@ app.use(
     },
   })
 );
-// Middleware
+// // Middleware
 app.use(cors({
     origin: ["https://shopmate-frontend.vercel.app", "http://localhost:5173", "http://localhost:3000"], 
     methods: ["GET", "POST", "PUT", "DELETE"],
@@ -50,11 +50,11 @@ app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
-// Error Handling Middleware
-app.use(notFound);
-app.use(errorHandler);
+// // Error Handling Middleware
+// app.use(notFound);
+// app.use(errorHandler);
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);

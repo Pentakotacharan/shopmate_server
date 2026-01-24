@@ -4,6 +4,7 @@ import Product from '../models/Product.js';
 // @desc    Fetch all products
 // @route   GET /api/products
 const getProducts = asyncHandler(async (req, res) => {
+  console.log('Fetching products...'); // Debugging log
   const products = await Product.find({});
   console.log('Fetched Products:', products); // Debugging log
   res.json(products);
