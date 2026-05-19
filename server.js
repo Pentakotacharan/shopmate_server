@@ -15,24 +15,7 @@ dotenv.config();
 connectDB();
 
 const app = express();
-app.use((req, res, next) => {
-  const allowedOrigins = ["https://shopmate-client.vercel.app", "http://localhost:5173", "http://localhost:3000"];
-  const origin = req.headers.origin;
-  
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  }
-  
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization');
-  
-  // Explicitly respond to preflight requests immediately
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-  next();
-});
+
 app.use(
   helmet({
     contentSecurityPolicy: {
@@ -48,11 +31,11 @@ app.use(
   })
 );
 // // Middleware
-// app.use(cors({
-//     origin: ["https://shopmate-client.vercel.app", "http://localhost:5173", "http://localhost:3000"], 
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true
-// }));
+app.use(cors({
+    origin: ["https://shopmate-client.vercel.app", "http://localhost:5173", "http://localhost:3000"], 
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
 app.use(express.json()); // Allows JSON data in body
 
 // Routes
